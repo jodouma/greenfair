@@ -1,0 +1,47 @@
+{
+  "name": "greenfair-dashboard",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "setup": "bash scripts/setup_wsl_project.sh",
+    "dev": "vite --host 0.0.0.0",
+    "dev:full": "bash scripts/dev_full.sh",
+    "data:build": "python3 scripts/build_greenfair_data.py",
+    "data:validate": "python3 scripts/validate_data.py",
+    "watch:data": "chokidar \"notebooks/**/*.ipynb\" \"scripts/**/*.py\" -c \"npm run data:build && npm run data:validate\"",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "lint": "eslint .",
+    "typecheck": "tsc -b --noEmit",
+    "clean": "bash scripts/clean.sh",
+    "secret:scan": "bash scripts/secret_scan.sh",
+    "verify": "npm run data:build && npm run data:validate && npm run typecheck && npm run lint && npm run build && npm run secret:scan",
+    "deploy:gh-pages": "npm run verify && gh-pages -d dist"
+  },
+  "dependencies": {
+    "framer-motion": "^11.18.2",
+    "lucide-react": "^0.511.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "recharts": "^2.15.3"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@typescript-eslint/eslint-plugin": "^8.33.0",
+    "@typescript-eslint/parser": "^8.33.0",
+    "@vitejs/plugin-react": "^4.4.1",
+    "autoprefixer": "^10.4.20",
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^9.1.2",
+    "eslint": "^9.27.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "gh-pages": "^6.3.0",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.8.3",
+    "vite": "^5.4.19"
+  }
+}

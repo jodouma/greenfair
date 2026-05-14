@@ -1,0 +1,15 @@
+node_modules
+dist
+.venv
+__pycache__
+*.pyc
+.DS_Store
+.env
+coverage
+.eslintcache
+scripts/cache
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
+tailwind.config.js
+tailwind.config.d.ts
