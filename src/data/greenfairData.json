@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generatedAt": "2026-05-14T22:02:41.500373+00:00",
+    "generatedAt": "2026-05-14T22:06:49.521280+00:00",
     "sourceNotebook": "notebooks/greenfair_score_m1_project.ipynb",
     "dataSource": "synthetic_notebook_fallback",
     "securityNotice": "The source notebook had an exposed Gemini key. It was removed from this repo copy and should be rotated by the owner."

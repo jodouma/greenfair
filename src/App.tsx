@@ -43,10 +43,16 @@ export default function App() {
 
   useEffect(() => {
     let cancelled = false;
-    fetch("./data/greenfairData.json")
+    const dataUrl = `${import.meta.env.BASE_URL}data/greenfairData.json`;
+
+    fetch(dataUrl)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}`);
+        }
+        const contentType = response.headers.get("content-type") ?? "";
+        if (!contentType.includes("application/json")) {
+          throw new Error(`Réponse inattendue pour ${dataUrl}`);
         }
         return response.json() as Promise<GreenfairData>;
       })
