@@ -17,7 +17,7 @@
     "clean": "bash scripts/clean.sh",
     "secret:scan": "bash scripts/secret_scan.sh",
     "verify": "npm run data:build && npm run data:validate && npm run typecheck && npm run lint && npm run build && npm run secret:scan",
-    "deploy:gh-pages": "npm run verify && gh-pages -d dist"
+    "deploy:gh-pages": "npm run verify"
   },
   "dependencies": {
     "framer-motion": "^11.18.2",
