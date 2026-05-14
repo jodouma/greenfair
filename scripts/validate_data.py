@@ -7,6 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "src" / "data" / "greenfairData.json"
+PUBLIC_DATA_PATH = ROOT / "public" / "data" / "greenfairData.json"
 
 EXPECTED_COUNTRIES = {
     "TUN": "Tunisia",
@@ -47,7 +48,9 @@ def assert_true(condition: bool, message: str) -> None:
 
 def main() -> None:
     assert_true(DATA_PATH.exists(), "greenfairData.json is missing. Run npm run data:build first.")
+    assert_true(PUBLIC_DATA_PATH.exists(), "public/data/greenfairData.json is missing. Run npm run data:build first.")
     payload = json.loads(DATA_PATH.read_text())
+    assert_true(DATA_PATH.read_text() == PUBLIC_DATA_PATH.read_text(), "Source and public JSON copies differ.")
 
     countries = {entry["code"]: entry["name"] for entry in payload["countries"]}
     assert_true(countries == EXPECTED_COUNTRIES, "Country list does not match the 10 expected countries.")

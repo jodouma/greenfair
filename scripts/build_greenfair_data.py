@@ -21,9 +21,11 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "src" / "data"
+CACHE_PUBLIC_DIR = ROOT / "public" / "data"
 CACHE_DIR = ROOT / "scripts" / "cache"
 NOTEBOOK_PATH = ROOT / "notebooks" / "greenfair_score_m1_project.ipynb"
 OUTPUT_PATH = DATA_DIR / "greenfairData.json"
+PUBLIC_OUTPUT_PATH = CACHE_PUBLIC_DIR / "greenfairData.json"
 CACHE_PATH = CACHE_DIR / "world_bank_raw.json"
 OBSERVED_YEARS = list(range(1998, 2024))
 SCENARIO_YEARS = [2024, 2025]
@@ -962,9 +964,13 @@ def build_output() -> dict[str, Any]:
 
 def main() -> None:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
+    CACHE_PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
     output = build_output()
-    OUTPUT_PATH.write_text(json.dumps(output, ensure_ascii=False, indent=2))
+    serialized = json.dumps(output, ensure_ascii=False, indent=2)
+    OUTPUT_PATH.write_text(serialized)
+    PUBLIC_OUTPUT_PATH.write_text(serialized)
     print(f"GreenFair data written to {OUTPUT_PATH}")
+    print(f"GreenFair public data written to {PUBLIC_OUTPUT_PATH}")
 
 
 if __name__ == "__main__":
